@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viva 스티커 꾸미기 수익화 — 테스트베드 & 확장 계획서</title>
+<style>
+  :root{
+    --ink:#1a1a1f; --muted:#5f6470; --line:#e4e6ec; --bg:#ffffff;
+    --accent:#4f46e5; --accent-soft:#eef0ff; --good:#0f9d58; --good-soft:#e7f6ee;
+    --warn:#c2410c; --warn-soft:#fdeee4; --star:#b8860b; --star-soft:#fbf3e0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f5f8;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 28px 80px}
+  header{border-bottom:3px solid var(--ink);padding-bottom:20px;margin-bottom:8px}
+  h1{font-size:26px;margin:0 0 8px;letter-spacing:-.4px}
+  .sub{color:var(--muted);font-size:14px}
+  .sub b{color:var(--ink)}
+  h2{font-size:19px;margin:44px 0 6px;letter-spacing:-.3px;padding-top:10px}
+  h2 .num{color:var(--accent);font-weight:800;margin-right:8px}
+  h3{font-size:15.5px;margin:24px 0 6px}
+  p{margin:8px 0}
+  .lead{color:var(--muted);margin:2px 0 14px;font-size:14px}
+  ul{margin:8px 0;padding-left:20px}
+  li{margin:5px 0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f0f1f5;font-weight:700}
+  td.n{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .box{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:18px 0;background:var(--bg)}
+  .box.star{border-color:#e7cf94;background:var(--star-soft)}
+  .box.accent{border-color:#c7ccff;background:var(--accent-soft)}
+  .box.warn{border-color:#f2c3a6;background:var(--warn-soft)}
+  .box h3{margin-top:0}
+  .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.4px;
+    padding:3px 9px;border-radius:20px;text-transform:uppercase;vertical-align:middle}
+  .tag.star{background:var(--star);color:#fff}
+  .tag.accent{background:var(--accent);color:#fff}
+  .tag.warn{background:var(--warn);color:#fff}
+  .tag.good{background:var(--good);color:#fff}
+  .verdict{font-size:16px;font-weight:800;margin:2px 0 10px;color:var(--good)}
+  .phase{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:16px 0}
+  .phase .gate{color:var(--good);font-weight:700;font-size:13.5px}
+  .kill{color:var(--warn);font-weight:700}
+  code{background:#f0f1f5;padding:1px 5px;border-radius:4px;font-size:12.5px}
+  .fig{margin:16px 0 6px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+  .figrow{display:flex;flex-wrap:wrap;gap:14px}
+  .figrow .fig{flex:1;min-width:230px;margin:8px 0}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;text-align:left}
+  figcaption b{color:var(--ink)}
+  svg{max-width:100%;height:auto}
+  .st{font-family:inherit} .sm{font-size:11px;fill:var(--muted)} .lb{font-size:12px;font-weight:700}
+  .anno{font-size:11px;font-weight:700;fill:#fff}
+  .tag.brand{background:#ff5a8a;color:#fff} .tag.pk{background:#7cc243;color:#fff}
+  .box.brand{border-color:#ffc6d7;background:#ffe6ee}
+  h4{font-size:14px;margin:18px 0 4px}
+  .sm2{font-size:11px;color:var(--muted)}
+  .logtbl td:nth-child(1){white-space:nowrap}
+  .logtbl td:nth-child(3){word-break:break-all}
+  .logtbl td:nth-child(4){white-space:nowrap;font-weight:500}
+  #toc{position:fixed;top:24px;left:max(12px,calc(50% - 654px));width:176px;max-height:88vh;overflow:auto;
+    font-size:12.5px;line-height:1.45;padding:12px 10px;border:1px solid var(--line);border-radius:12px;background:#fff;z-index:20}
+  #toc h4{margin:0 0 8px;font-size:11.5px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+  #toc a{display:block;padding:4px 8px;margin:1px 0;border-radius:7px;color:var(--muted);text-decoration:none;border-left:2px solid transparent}
+  #toc a:hover{background:#f0f1f5;color:var(--ink)}
+  #toc a.active{color:#c02f5c;background:#ffe9f0;border-left-color:#ff5a8a;font-weight:700}
+  @media (max-width:1320px){#toc{position:static;width:auto;max-width:940px;max-height:none;margin:0 auto 22px}}
+  @media print{#toc{display:none}}
+  .foot{margin-top:50px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  @media print{body{background:#fff}.wrap{padding:0}.box,table,.phase{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Viva 스티커 꾸미기 수익화 — 테스트베드 &amp; 확장 계획서</h1>
+  <div class="sub">
+    수익화 축: <b>Hybrid 1+3 (볼륨 사다리 × 리듬 스트릭)</b> · 벤치마크: <b>Pikmin Bloom</b> · DAU 1,200 · 상세 기획 포함 · 2026-07-12
+  </div>
+</header>
+<nav id="toc" aria-label="목차"></nav>
+
+<!-- 0 -->
+<h2><span class="num">0</span>요약</h2>
+<ul>
+  <li><b>컨셉:</b> 브이로그를 만들수록·편집할수록·꾸준히 할수록 스티커가 쌓여, 프로필/영상 프레임(현재 흰 배경)을 꾸미는 컬렉션 시스템.</li>
+  <li><b>근거:</b> Pikmin Bloom은 '걷기'라는 매일 습관 위에 '수집'을 얹어 누적 $100M 달성. Viva의 습관 축 = 녹화·컴파일.</li>
+  <li><b>원칙:</b> ① 무료 획득 루프로 습관(리텐션)을 먼저 검증 → 이후 유료화. ② $1.99 클라우드 구독은 별도 엔진으로 분리 검증(번들 금지). ③ 리텐션 게이트 미달 시 축 재설계. ④ <b>포인트·코인 재화 없이</b> 배지형 즉시 언락으로 가볍게 유지.</li>
+  <li><b>검증 방식:</b> 주 단위로 반복 개선. 근접지표는 약 4일에 A/B 판정, D7 리텐션은 2주 병렬 관측.</li>
+</ul>
+
+<!-- 1 mechanism -->
+<h2><span class="num">1</span>메커니즘 &amp; 스티커 물량</h2>
+<ul>
+  <li><b>볼륨 축:</b> 누적 행동(녹화·편집·<b>컴파일·공유</b>) 마일스톤에서 스티커가 <b>바로 언락</b>(컴파일·공유에 가중).</li>
+  <li><b>리듬 축:</b> 연속 기록일(3·7·14) · 요일 세트 · 주간 컴파일 세트. 페널티 없는 '부드러운 스트릭'(그레이스 데이).</li>
+  <li><b>적용:</b> 프레임의 <code>background</code>/<code>stickers</code> 탭. 희귀도 기본/레어/시즌한정, 세트 진행바 노출.</li>
+</ul>
+<p><b>가벼움 원칙:</b> 적립·소비형 재화(포인트/코인) 없음. 스티커는 행동·스트릭 달성 시 <b>즉시 지급되는 배지형 보상</b>. 상점·잔액 개념 없이 가벼운 톤 유지.</p>
+<p><b>물량 정책:</b> 베이스 디자인 10~15개 × 색/시즌 변형 → 컬렉션 슬롯 30~50개(아트 원가는 베이스 수준). 물량은 <b>최고 획득 속도 × 테스트 기간 × 안전마진</b>으로 산정하며 소프트 캡·시즌 리셋으로 페이스 조절. 스모크 단계는 12~15슬롯으로 시작.</p>
+<p><b>Non-goal:</b> GPS·AI 맥락 인식(확장 단계로 유예) · 개별 낱개 판매 · 가챠.</p>
+
+<!-- 2 KPI -->
+<h2><span class="num">2</span>KPI <span class="tag star">판정 기준</span></h2>
+<div class="box star">
+  <h3>북극성(North Star): WCU% — 주간 완성 유저 비율</h3>
+  <p style="margin:4px 0">주간 활성 유저 중 브이로그를 1회 이상 <b>컴파일</b>한 유저 비율. 시스템 목적을 "완성하는 유저를 늘리는 것"에 정렬.</p>
+</div>
+<table>
+  <tr><th>영역</th><th>KPI (정의)</th><th>유형</th><th>기대 방향</th></tr>
+  <tr><td>리텐션</td><td><b>재녹화율(48h)</b> — 스티커 획득 후 48h 내 재녹화 %</td><td><b>근접</b></td><td>노출군 &gt; 대조군</td></tr>
+  <tr><td>리텐션</td><td>D7 / D30 리텐션</td><td>지연</td><td>방향성 보조(§4)</td></tr>
+  <tr><td>참여</td><td>컴파일/유저(주), 주간 세션 수</td><td>근접</td><td>상승</td></tr>
+  <tr><td>수집</td><td><b>스티커 적용률</b> — 획득자 중 실제 적용 %</td><td>근접</td><td>≥ 60%</td></tr>
+  <tr><td>수집</td><td>세트 완성률</td><td>근접</td><td>상승</td></tr>
+  <tr><td>수익화(후행)</td><td>패스 전환율, ARPDAU, 구독 M1 유지율</td><td>지연</td><td>벤치 대비 검증</td></tr>
+</table>
+<div class="box warn">
+  <h3><span class="tag warn">가드레일</span> 하나라도 악화 시 중단·재설계</h3>
+  <ul style="margin:4px 0">
+    <li><b>스트릭 이탈률</b> — 스트릭 종료 후 이탈이 대조군보다 높으면 압박 부작용.</li>
+    <li><b>공유율 하락</b> — 핵심 가치(프라이빗 공유) 잠식 시 실패.</li>
+    <li><b>세션 길이 비정상 급증</b> — 의무감 신호.</li>
+  </ul>
+</div>
+
+<!-- 3 roadmap -->
+<h2><span class="num">3</span>실행 로드맵</h2>
+<p class="lead"><b>핵심 결정:</b> 세부 기획(§5)의 핵심(언락·스트릭·컬렉션)은 한 덩어리 MVP로 넣고, 공유물 합성 렌더와 수익화만 뒤로 뺀다. 근접지표 판정은 약 4일, D7 리텐션은 2주 병렬 관측.</p>
+<table>
+  <tr><th>단계</th><th class="n">기간</th><th>무엇을 만드나 (스코프)</th><th>다음 단계 진입 조건</th></tr>
+  <tr style="background:var(--good-soft)"><td><b>준비 + MVP 빌드</b></td><td class="n">~1주</td><td>로그·A/B 인프라·기준선 측정 + 언락(마일스톤 + 스트릭 + 그레이스) · 스티커 ~30슬롯(베이스 10~15 × 변형) · <b>컬렉션 화면</b> · 획득 연출 · 프로필/카드 적용</td><td>빌드 + 계측 정상</td></tr>
+  <tr><td>프리플라이트 QA</td><td class="n">1~2일</td><td>팀 도그푸딩 + 소수 실유저로 획득→적용 흐름 점검(깨짐·혼란만, A/B 전 확인)</td><td>플로우 정상 → A/B</td></tr>
+  <tr style="background:var(--good-soft)"><td><b>A/B</b></td><td class="n">~4일 판정<br>+리텐션 2주 병렬</td><td>주지표 재녹화율(48h) + D7 리텐션 병행. "왜"는 퍼널 로그로 진단(획득→알림탭→꾸미기화면→적용 이탈)</td><td>노출군 우세 → 확장 / 아니면 중단</td></tr>
+  <tr><td>확장</td><td class="n">검증 후</td><td><b>공유 영상 합성 렌더</b>(QA 최우선) · 시즌 로테이션 상시화 · 원격설정 튜닝</td><td>공유물 무결성 통과</td></tr>
+  <tr><td>수익화</td><td class="n">후행</td><td>이벤트 패스 · 구독</td><td>리텐션 검증 후</td></tr>
+</table>
+<p class="lead"><b>1주 전제:</b> 현행 stickers 탭 실동작 + A/B 기존 툴 재사용. 목업이거나 A/B 인프라 신규 구축 시 +수일(§5.9 오픈 이슈 ①). <b>MVP 제외:</b> 공유물 합성 렌더 · 수익화.</p>
+
+<h3>3-1 테스트 가동 후 일일 운영 &amp; 의사결정</h3>
+<p class="lead">A/B가 돌기 시작하면 '매일 모니터링 → 주기별 결정'의 리듬으로 운영한다.</p>
+<h4>매일 하는 일</h4>
+<ul>
+  <li><b>아침 대시보드 점검(~30분):</b> 전일 재녹화율·스티커 적용률, 퍼널 단계별 이탈(획득→알림탭→꾸미기화면→적용), 가드레일(스트릭 이탈률·공유율), <b>SRM(배정 비율)·로그 수집 정상</b> 여부.</li>
+  <li><b>스탠드업(15분):</b> 어제 지표·오늘 할 일·막힌 것 공유(기획·아트·개발).</li>
+  <li><b>개선 준비:</b> 카피·획득 연출·언락 임계값을 원격 설정으로 조정할 후보 정리. 아트는 다음 세트 진행, 개발은 버그픽스.</li>
+  <li><b>이상 감지 시 즉시:</b> SRM 깨짐·로그 누락·가드레일 급악화 → 실험 일시중지 후 원인 파악(오염된 데이터로 판정 금지).</li>
+</ul>
+<h4>의사결정 케이던스</h4>
+<table>
+  <tr><th>주기</th><th>확인</th><th>결정</th></tr>
+  <tr><td>매일</td><td>지표·가드레일·SRM·로그 정상</td><td>계속 / (데이터 오염 시) 즉시 중지</td></tr>
+  <tr><td>~4일차</td><td>근접지표 1차 통계 판정</td><td>개선 반복 / 확장 / 중단</td></tr>
+  <tr><td>매주</td><td>누적 지표·개선 효과</td><td>다음 단계 범위 확정, 아트·개발 우선순위 조정</td></tr>
+  <tr><td>2주차</td><td>D7 리텐션 방향</td><td>수익화 레이어 진행 여부</td></tr>
+</table>
+
+<!-- 4 validation -->
+<h2><span class="num">4</span>검증 설계 — A/B (DAU 1,200)</h2>
+<div class="box accent">
+  <div class="verdict">A/B 채택. 주지표 = 근접지표(~4일 판정), 리텐션은 2주 병렬 보조.</div>
+  <p style="margin:6px 0">도입 전후 비교는 신규 유입·마케팅·앱 빌드 변화가 뒤섞여(교란변수) 인과 근거로 부적합 — 여러 방법으로 교차 확인하는 보조 용도로만 쓴다. D7 리텐션을 A/B 주지표로 쓰면 코호트당 수천 명이 필요해 판정이 지연됨.</p>
+</div>
+<table>
+  <tr><th>주지표</th><th class="n">그룹당 필요 인원</th><th class="n">편입 기간</th><th class="n">관측창</th><th class="n">판정</th><th>결론</th></tr>
+  <tr style="background:var(--good-soft)"><td><b>재녹화율(48h) 20→30%</b></td><td class="n">300</td><td class="n">~1.4일</td><td class="n">2일</td><td class="n"><b>~4일</b></td><td style="color:var(--good)"><b>주지표</b></td></tr>
+  <tr><td>리텐션 +8pp</td><td class="n">546</td><td class="n">~2.5일</td><td class="n">7일</td><td class="n">~10일</td><td>병행</td></tr>
+  <tr><td>리텐션 +5pp</td><td class="n">1,373</td><td class="n">~6.4일</td><td class="n">7일</td><td class="n">~2주</td><td>병행</td></tr>
+  <tr><td>리텐션 +3pp</td><td class="n">3,756</td><td class="n">~17.5일</td><td class="n">7일</td><td class="n">~4주</td><td style="color:var(--warn)">주지표 부적합</td></tr>
+</table>
+<p class="lead">WAU 3,000(DAU/WAU 0.4, 그룹당 ~214명/일 편입) 가정 · z=2.8(95%·80%). 둘째 주부터 기존 활성층 소진으로 대형 표본은 지연되므로 3pp급 미세효과는 A/B 대상에서 제외.</p>
+<p><span class="kill">중단 기준:</span> A/B에서 근접지표가 노출군 우세를 못 보이면 이 축(볼륨×리듬)을 폐기하고 초안2/4 재선택.</p>
+
+<!-- 5 detailed planning -->
+<h2><span class="num">5</span>기획 상세 (화면·규칙) <span class="tag brand">기획 항목</span></h2>
+<div class="box warn" style="text-align:center;font-size:15px"><b>⚠ 초안(러프 드래프트)</b> — 아래 화면·수치·규칙은 방향 제시용이며 확정본이 아님</div>
+<p class="lead">§1 메커니즘을 화면·규칙 단위로 상세화. 참고 이미지는 스크린샷 재현 목업 + 도식(원본 이미지 파일 미첨부, 피크민은 저작권 안전한 메커니즘 도식).</p>
+
+<h3>5.1 디자인 원칙 (모든 화면 공통)</h3>
+<ul>
+  <li><b>가볍게:</b> 포인트·코인 같은 적립/소비 재화 없음. 상점·잔액·구매 UI 금지.</li>
+  <li><b>배지형 즉시 언락:</b> 행동/스트릭 달성 순간 스티커 바로 지급(획득=완료), 교환 단계 없음.</li>
+  <li><b>브랜드 톤 보호:</b> 스트릭은 페널티 없는 부드러운 형태, 강요·죄책감 카피 금지.</li>
+  <li><b>기존 UI 최소 변형:</b> 현행 <code>background</code>/<code>stickers</code> 탭 구조 재사용, 신규 화면은 컬렉션 1개만 추가.</li>
+</ul>
+
+<h3>5.2 벤치마크 메커니즘 <span class="tag pk">참고 도식</span></h3>
+<div class="fig">
+<svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" class="st">
+  <g transform="translate(0,8)">
+    <text x="360" y="14" text-anchor="middle" class="lb" fill="#7cc243">Pikmin Bloom</text>
+    <rect x="20" y="30" width="150" height="90" rx="14" fill="#eef8e2" stroke="#bfe39a"/>
+    <circle cx="60" cy="70" r="16" fill="#7cc243"/><text x="60" y="75" text-anchor="middle" font-size="16">🚶</text>
+    <text x="95" y="66" class="lb" fill="#3f6b18">걷기</text><text x="95" y="84" class="sm">매일 하는 습관</text>
+    <text x="40" y="112" class="sm">일상 행동</text>
+    <text x="188" y="80" text-anchor="middle" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="206" y="30" width="150" height="90" rx="14" fill="#eef8e2" stroke="#bfe39a"/>
+    <text x="281" y="62" text-anchor="middle" font-size="20">🏞️ ☕ 🍜</text>
+    <text x="281" y="86" text-anchor="middle" class="lb" fill="#3f6b18">장소 유형</text>
+    <text x="281" y="104" text-anchor="middle" class="sm">변화 축(무한)</text>
+    <text x="374" y="80" text-anchor="middle" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="392" y="30" width="150" height="90" rx="14" fill="#fff5f9" stroke="#ffc6d7"/>
+    <circle cx="432" cy="70" r="16" fill="#ff5a8a"/><text x="432" y="76" text-anchor="middle" font-size="15">🎀</text>
+    <text x="465" y="66" class="lb" fill="#c02f5c">데코 획득</text><text x="465" y="84" class="sm">재화 없이 직접</text>
+    <text x="560" y="80" text-anchor="middle" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="578" y="30" width="130" height="90" rx="14" fill="#e8f0ff" stroke="#c3d7fb"/>
+    <text x="643" y="64" text-anchor="middle" font-size="20">🗂️</text>
+    <text x="643" y="86" text-anchor="middle" class="lb" fill="#2f56a8">컬렉션</text>
+    <text x="643" y="104" text-anchor="middle" class="sm">"다 모으고 싶다"</text>
+  </g>
+  <g transform="translate(0,150)">
+    <text x="360" y="6" text-anchor="middle" class="lb" fill="#ff5a8a">→ Viva 치환</text>
+    <text x="95" y="42" text-anchor="middle" class="sm">녹화·편집·컴파일</text>
+    <text x="281" y="42" text-anchor="middle" class="sm">마일스톤·요일·시즌</text>
+    <text x="467" y="42" text-anchor="middle" class="sm">스티커 즉시 지급</text>
+    <text x="643" y="42" text-anchor="middle" class="sm">프레임 꾸미기 컬렉션</text>
+  </g>
+</svg>
+<figcaption><b>핵심:</b> 재화(포인트)를 끼우지 않는 게 피크민의 본질. Viva도 행동 → 스티커 직결로 가볍게 유지.</figcaption>
+</div>
+
+<h3>5.3 핵심 UX 플로우 <span class="tag brand">기획4</span></h3>
+<div class="fig">
+<svg viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg" class="st">
+  <g font-family="inherit">
+    <rect x="14" y="30" width="180" height="150" rx="16" fill="#fff" stroke="#e5e7ef"/>
+    <circle cx="40" cy="56" r="12" fill="#ff5a8a"/><text x="40" y="60" text-anchor="middle" class="anno">1</text>
+    <text x="60" y="60" class="lb">행동 완료</text>
+    <text x="30" y="92" class="sm">브이로그 컴파일 →</text><text x="30" y="110" class="sm">언락 조건 충족</text>
+    <rect x="30" y="126" width="148" height="40" rx="8" fill="#ffe6ee"/><text x="104" y="151" text-anchor="middle" font-size="12" fill="#c02f5c">🎉 트리거 발동</text>
+    <text x="210" y="110" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="236" y="30" width="180" height="150" rx="16" fill="#fff" stroke="#e5e7ef"/>
+    <circle cx="262" cy="56" r="12" fill="#ff5a8a"/><text x="262" y="60" text-anchor="middle" class="anno">2</text>
+    <text x="282" y="60" class="lb">획득 연출</text>
+    <text x="252" y="92" class="sm">"새 스티커!" 모달</text><text x="252" y="110" class="sm">스티커 크게 노출</text>
+    <rect x="252" y="126" width="148" height="40" rx="8" fill="#e8f0ff"/><text x="326" y="151" text-anchor="middle" font-size="12" fill="#2f56a8">[꾸미러 가기]</text>
+    <text x="432" y="110" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="458" y="30" width="180" height="150" rx="16" fill="#fff" stroke="#e5e7ef"/>
+    <circle cx="484" cy="56" r="12" fill="#ff5a8a"/><text x="484" y="60" text-anchor="middle" class="anno">3</text>
+    <text x="504" y="60" class="lb">적용</text>
+    <text x="474" y="92" class="sm">stickers 탭에서</text><text x="474" y="110" class="sm">프레임에 배치</text>
+    <rect x="474" y="126" width="148" height="40" rx="8" fill="#f0f1f6"/><text x="548" y="151" text-anchor="middle" font-size="12" fill="#6b7280">드래그·탭 배치</text>
+    <text x="654" y="110" font-size="22" fill="#9aa2b1">→</text>
+    <rect x="680" y="30" width="166" height="150" rx="16" fill="#fff" stroke="#e5e7ef"/>
+    <circle cx="706" cy="56" r="12" fill="#ff5a8a"/><text x="706" y="60" text-anchor="middle" class="anno">4</text>
+    <text x="726" y="60" class="lb">저장</text>
+    <text x="696" y="92" class="sm">save → 프로필/</text><text x="696" y="110" class="sm">공유물에 반영</text>
+    <rect x="696" y="126" width="134" height="40" rx="8" fill="#e5f6ec"/><text x="763" y="151" text-anchor="middle" font-size="12" fill="#12a150">✓ 완료</text>
+  </g>
+  <text x="430" y="200" text-anchor="middle" class="sm">퍼널 로그: sticker_earned → earn_notif_tapped → decorate_screen_opened → sticker_applied</text>
+</svg>
+<figcaption>2단계 모달의 <b>[꾸미러 가기]</b> CTA가 3단계 적용률(≥60% 목표)을 좌우하는 핵심 전환점.</figcaption>
+</div>
+
+<h3>5.4 화면별 상세 <span class="tag brand">기획5·7</span></h3>
+<div class="figrow">
+  <figure class="fig">
+  <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="6" y="6" width="288" height="588" rx="34" fill="#fff" stroke="#dfe2ea"/>
+    <text x="34" y="40" font-size="13" font-weight="700">9:41</text><text x="266" y="40" text-anchor="end" font-size="12">▪▪▪ ▾ ▮</text>
+    <text x="28" y="76" font-size="18">‹</text><text x="150" y="78" text-anchor="middle" font-size="14" font-weight="700">profile</text>
+    <text x="272" y="78" text-anchor="end" font-size="13" fill="#b6bcc8">save</text>
+    <line x1="20" y1="92" x2="280" y2="92" stroke="#eef0f5"/>
+    <rect x="70" y="112" width="160" height="210" rx="10" fill="#fff" stroke="#eceef3"/>
+    <text x="150" y="140" text-anchor="middle" font-size="11" font-weight="700">jun 26, 2026</text>
+    <rect x="94" y="150" width="112" height="120" rx="10" fill="#e7e8ec"/>
+    <text x="150" y="292" text-anchor="middle" font-size="12" font-weight="700">joy</text>
+    <rect x="128" y="300" width="44" height="16" rx="3" fill="none" stroke="#c4c8d2" stroke-dasharray="3 2"/>
+    <text x="150" y="312" text-anchor="middle" font-size="9" font-weight="700">stitch</text>
+    <rect x="34" y="346" width="232" height="44" rx="10" fill="#fff" stroke="#e5e7ef"/>
+    <text x="52" y="373" font-size="12" fill="#8b909c">name</text><text x="120" y="373" font-size="12">joy</text><rect x="134" y="362" width="1.5" height="16" fill="#5b8def"/>
+    <text x="60" y="424" text-anchor="middle" font-size="12.5" font-weight="700">background</text><rect x="26" y="432" width="68" height="2.5" fill="#20222a"/>
+    <text x="150" y="424" text-anchor="middle" font-size="12.5" fill="#b6bcc8">stickers</text>
+    <g fill="#fff" stroke="#e9ebf1">
+      <circle cx="52" cy="486" r="24"/><circle cx="114" cy="486" r="24"/><circle cx="176" cy="486" r="24"/><circle cx="238" cy="486" r="24"/>
+      <circle cx="52" cy="546" r="24"/><circle cx="114" cy="546" r="24"/><circle cx="176" cy="546" r="24"/><circle cx="238" cy="546" r="24"/>
+    </g>
+  </svg>
+  <figcaption><b>[현행] 프로필 화면 재현.</b> 카드(날짜·영상·이름·스티커 라벨) + name 입력 + <code>background</code>/<code>stickers</code> 탭 + 스와치 8개. <span style="color:var(--warn)">이 구조를 그대로 재사용.</span></figcaption>
+  </figure>
+  <figure class="fig">
+  <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="6" y="6" width="288" height="588" rx="34" fill="#fff" stroke="#dfe2ea"/>
+    <text x="150" y="42" text-anchor="middle" font-size="14" font-weight="700">profile</text>
+    <line x1="20" y1="56" x2="280" y2="56" stroke="#eef0f5"/>
+    <rect x="70" y="72" width="160" height="196" rx="10" fill="#fff" stroke="#eceef3"/>
+    <text x="150" y="98" text-anchor="middle" font-size="11" font-weight="700">jun 26, 2026</text>
+    <rect x="94" y="108" width="112" height="118" rx="10" fill="#e7e8ec"/>
+    <text x="150" y="248" text-anchor="middle" font-size="12" font-weight="700">joy</text>
+    <circle cx="98" cy="112" r="13" fill="#ffd84d"/><text x="98" y="117" text-anchor="middle" font-size="12">🌞</text>
+    <circle cx="205" cy="220" r="13" fill="#ff9ec4"/><text x="205" y="225" text-anchor="middle" font-size="12">🎀</text>
+    <text x="243" y="150" font-size="13">✨</text>
+    <text x="60" y="298" text-anchor="middle" font-size="12.5" fill="#b6bcc8">background</text>
+    <text x="176" y="298" text-anchor="middle" font-size="12.5" font-weight="700">stickers</text><rect x="146" y="306" width="60" height="2.5" fill="#20222a"/>
+    <g>
+      <circle cx="52" cy="360" r="24" fill="#fff8dc" stroke="#f0e6b8"/><text x="52" y="366" text-anchor="middle" font-size="18">🌞</text>
+      <circle cx="114" cy="360" r="24" fill="#ffe6ef" stroke="#f6cddd"/><text x="114" y="366" text-anchor="middle" font-size="18">🎀</text>
+      <circle cx="176" cy="360" r="24" fill="#e6f0ff" stroke="#cdddf6"/><text x="176" y="366" text-anchor="middle" font-size="16">✨</text>
+      <circle cx="238" cy="360" r="24" fill="#f0f1f5" stroke="#e2e4ea"/><text x="238" y="366" text-anchor="middle" font-size="15" fill="#b6bcc8">🔒</text>
+      <circle cx="52" cy="420" r="24" fill="#f0f1f5" stroke="#e2e4ea"/><text x="52" y="426" text-anchor="middle" font-size="15" fill="#b6bcc8">🔒</text>
+      <circle cx="114" cy="420" r="24" fill="#f0f1f5" stroke="#e2e4ea"/><text x="114" y="426" text-anchor="middle" font-size="15" fill="#b6bcc8">🔒</text>
+      <circle cx="176" cy="420" r="24" fill="#f0f1f5" stroke="#e2e4ea"/><text x="176" y="426" text-anchor="middle" font-size="15" fill="#b6bcc8">🔒</text>
+      <circle cx="238" cy="420" r="24" fill="#f0f1f5" stroke="#e2e4ea"/><text x="238" y="426" text-anchor="middle" font-size="15" fill="#b6bcc8">🔒</text>
+    </g>
+    <rect x="34" y="470" width="232" height="40" rx="10" fill="#fff5f9" stroke="#ffc6d7"/>
+    <text x="150" y="495" text-anchor="middle" font-size="11.5" fill="#c02f5c">🔒 잠긴 스티커는 어떻게 얻나요? ›</text>
+    <text x="150" y="545" text-anchor="middle" font-size="10.5" fill="#8b909c">보유 스티커를 카드에 드래그해 배치</text>
+  </svg>
+  <figcaption><b>[신규] stickers 탭.</b> 보유=컬러, 미보유=🔒 실루엣. 잠긴 항목 탭 → 획득 조건 안내(컬렉션). 프레임에 드래그 배치.</figcaption>
+  </figure>
+</div>
+<div class="figrow">
+  <figure class="fig">
+  <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="6" y="6" width="288" height="368" rx="24" fill="#faf7fb" stroke="#e5e7ef"/>
+    <rect x="44" y="40" width="212" height="300" rx="20" fill="#fff" stroke="#eee"/>
+    <text x="150" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#ff5a8a">새 스티커 획득! 🎉</text>
+    <circle cx="150" cy="150" r="44" fill="#fff8dc" stroke="#f0e6b8" stroke-width="2"/><text x="150" y="164" text-anchor="middle" font-size="42">🌞</text>
+    <text x="150" y="228" text-anchor="middle" font-size="13" font-weight="700">Sunny Day</text>
+    <text x="150" y="248" text-anchor="middle" class="sm">7일 연속 기록 달성</text>
+    <text x="150" y="270" text-anchor="middle" font-size="11" fill="#5b8def">Summer 세트 · 3/6</text>
+    <rect x="70" y="286" width="160" height="38" rx="19" fill="#ff5a8a"/><text x="150" y="310" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">꾸미러 가기</text>
+    <text x="150" y="336" text-anchor="middle" font-size="11" fill="#9aa2b1">나중에</text>
+  </svg>
+  <figcaption><b>[신규] 획득 연출 모달.</b> 스티커를 크게 + <b>획득 행동</b> + 세트 진행(3/6) 노출로 다음 수집 유도. 1차 CTA=꾸미러 가기.</figcaption>
+  </figure>
+  <figure class="fig">
+  <svg viewBox="0 0 300 480" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="6" y="6" width="288" height="468" rx="28" fill="#fff" stroke="#dfe2ea"/>
+    <text x="150" y="42" text-anchor="middle" font-size="14" font-weight="700">컬렉션</text>
+    <line x1="20" y1="56" x2="280" y2="56" stroke="#eef0f5"/>
+    <text x="30" y="86" font-size="12.5" font-weight="700">🌸 Weekly 세트</text><text x="270" y="86" text-anchor="end" font-size="11" fill="#12a150">5/7</text>
+    <rect x="30" y="94" width="240" height="6" rx="3" fill="#eef0f5"/><rect x="30" y="94" width="171" height="6" rx="3" fill="#12a150"/>
+    <g>
+      <circle cx="52" cy="128" r="18" fill="#fff8dc" stroke="#f0e6b8"/><circle cx="102" cy="128" r="18" fill="#ffe6ef" stroke="#f6cddd"/>
+      <circle cx="152" cy="128" r="18" fill="#e6f0ff" stroke="#cdddf6"/><circle cx="202" cy="128" r="18" fill="#e9f8ea" stroke="#c8ebc9"/>
+      <circle cx="252" cy="128" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="252" y="133" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+    </g>
+    <text x="30" y="180" font-size="12.5" font-weight="700">☀️ Summer 세트 <tspan font-size="9" fill="#d9760a">· 시즌한정</tspan></text><text x="270" y="180" text-anchor="end" font-size="11" fill="#12a150">3/6</text>
+    <rect x="30" y="188" width="240" height="6" rx="3" fill="#eef0f5"/><rect x="30" y="188" width="120" height="6" rx="3" fill="#d9760a"/>
+    <g>
+      <circle cx="52" cy="222" r="18" fill="#fff8dc" stroke="#f0e6b8"/><circle cx="102" cy="222" r="18" fill="#ffeede" stroke="#f6dcc0"/>
+      <circle cx="152" cy="222" r="18" fill="#e6f0ff" stroke="#cdddf6"/>
+      <circle cx="202" cy="222" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="202" y="227" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+      <circle cx="252" cy="222" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="252" y="227" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+    </g>
+    <text x="30" y="274" font-size="12.5" font-weight="700">🏆 마일스톤 세트</text><text x="270" y="274" text-anchor="end" font-size="11" fill="#12a150">2/5</text>
+    <rect x="30" y="282" width="240" height="6" rx="3" fill="#eef0f5"/><rect x="30" y="282" width="96" height="6" rx="3" fill="#5b8def"/>
+    <g>
+      <circle cx="52" cy="316" r="18" fill="#ffe6ef" stroke="#f6cddd"/><circle cx="102" cy="316" r="18" fill="#e6f0ff" stroke="#cdddf6"/>
+      <circle cx="152" cy="316" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="152" y="321" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+      <circle cx="202" cy="316" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="202" y="321" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+      <circle cx="252" cy="316" r="18" fill="#f0f1f5" stroke="#e2e4ea"/><text x="252" y="321" text-anchor="middle" font-size="12" fill="#b6bcc8">🔒</text>
+    </g>
+    <rect x="30" y="352" width="240" height="86" rx="12" fill="#f7f8fb" stroke="#e9ebf1"/>
+    <text x="46" y="378" font-size="11.5" font-weight="700" fill="#6b7280">🔒 잠긴 스티커 탭 시</text>
+    <text x="46" y="398" font-size="11" fill="#8b909c">"브이로그 10개 완성 시 획득"</text>
+    <text x="46" y="416" font-size="11" fill="#8b909c">진행도: 6/10 ▓▓▓▓▓▓░░░░</text>
+  </svg>
+  <figcaption><b>[신규] 컬렉션 화면.</b> 세트별 진행바 + 미획득 🔒 실루엣 + 획득 조건·진행도("6/10"). 재화가 없으니 이 화면이 동기부여 중심.</figcaption>
+  </figure>
+</div>
+<h4>스트릭 인디케이터 (프로필/홈 상단)</h4>
+<div class="fig" style="text-align:left">
+<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" class="st">
+  <rect x="10" y="20" width="680" height="80" rx="16" fill="#fff" stroke="#e5e7ef"/>
+  <text x="42" y="56" font-size="24">🔥</text>
+  <text x="76" y="52" font-size="14" font-weight="800">5일 연속</text><text x="76" y="72" class="sm">오늘 기록하면 6일! · 이번 주 요일 세트 5/7</text>
+  <g>
+    <circle cx="330" cy="60" r="14" fill="#ff5a8a"/><text x="330" y="65" text-anchor="middle" font-size="10" fill="#fff">월</text>
+    <circle cx="372" cy="60" r="14" fill="#ff5a8a"/><text x="372" y="65" text-anchor="middle" font-size="10" fill="#fff">화</text>
+    <circle cx="414" cy="60" r="14" fill="#ff5a8a"/><text x="414" y="65" text-anchor="middle" font-size="10" fill="#fff">수</text>
+    <circle cx="456" cy="60" r="14" fill="#ffd6a0"/><text x="456" y="65" text-anchor="middle" font-size="9" fill="#8a5a12">grace</text>
+    <circle cx="498" cy="60" r="14" fill="#ff5a8a"/><text x="498" y="65" text-anchor="middle" font-size="10" fill="#fff">금</text>
+    <circle cx="540" cy="60" r="14" fill="#fff" stroke="#e2e4ea"/><text x="540" y="65" text-anchor="middle" font-size="10" fill="#b6bcc8">토</text>
+    <circle cx="582" cy="60" r="14" fill="#fff" stroke="#e2e4ea"/><text x="582" y="65" text-anchor="middle" font-size="10" fill="#b6bcc8">일</text>
+  </g>
+</svg>
+<figcaption><b>부드러운 스트릭.</b> 하루 놓쳐도 <b>grace(주 1회 자동 보정)</b>로 유지 — 응원 톤. ⭕"오늘 기록하면 6일!" ❌"연속 기록이 끊깁니다!"</figcaption>
+</div>
+
+<h3>5.5 언락 규칙표 <span class="tag brand">기획1</span> <span class="tag accent">재화 없음</span></h3>
+<p class="lead">행동/마일스톤/스트릭 달성 → 해당 스티커 즉시 지급. 초기값은 원격 설정으로 A/B 중 튜닝. 파워유저 소진 방지 위해 후반 슬롯 임계값 상향.</p>
+<table>
+  <tr><th>트리거 유형</th><th>조건(초기값)</th><th>지급 스티커</th><th>세트</th></tr>
+  <tr><td rowspan="3">마일스톤(볼륨)</td><td>첫 브이로그 컴파일</td><td>웰컴 스티커 1</td><td>마일스톤</td></tr>
+  <tr><td>브이로그 누적 5 / 10 / 25개</td><td>마일스톤 2·3·4</td><td>마일스톤</td></tr>
+  <tr><td>편집(스택/머지) 누적 20회</td><td>에디터 스티커</td><td>마일스톤</td></tr>
+  <tr><td rowspan="2">리듬(스트릭)</td><td>3 / 7 / 14일 연속 기록</td><td>스트릭 스티커 1·2·3</td><td>Weekly</td></tr>
+  <tr><td>한 주 요일 세트 완성(월~일)</td><td>위크 컴플리트 프레임</td><td>Weekly</td></tr>
+  <tr><td>시즌(한정)</td><td>시즌 기간 중 컴파일 N회</td><td>시즌 스티커(교체형)</td><td>Summer 등</td></tr>
+  <tr><td>공유(선택)</td><td>프라이빗 공유 첫 1회</td><td>셰어 스티커</td><td>마일스톤</td></tr>
+</table>
+<div class="box warn"><b>밸런싱 주의:</b> 지급은 즉시·무료지만 페이스는 설계 대상. 파워유저 최고 획득 속도(하루 2~3개) 기준으로 총 슬롯·후반 임계값 설정, 소프트 캡+시즌 리셋으로 콘텐츠 고갈 방지.</div>
+
+<h3>5.6 세트·희귀도 구조 <span class="tag brand">기획2</span></h3>
+<p class="lead">아트 원가 최소화 핵심: 베이스 1개 → 색·시즌 변형으로 슬롯 다수(피크민 색 변형 트릭).</p>
+<div class="fig" style="text-align:left">
+<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" class="st">
+  <circle cx="80" cy="90" r="34" fill="#ffe0ec" stroke="#ff9ec4" stroke-width="2"/><text x="80" y="102" text-anchor="middle" font-size="30">🎀</text>
+  <text x="80" y="150" text-anchor="middle" class="lb">베이스 1개</text><text x="80" y="168" text-anchor="middle" class="sm">디자인 원가 ×1</text>
+  <text x="150" y="94" font-size="24" fill="#9aa2b1">→</text>
+  <g>
+    <circle cx="230" cy="56" r="22" fill="#ffd6df"/><text x="230" y="63" text-anchor="middle" font-size="18">🎀</text>
+    <circle cx="290" cy="56" r="22" fill="#d6e4ff"/><text x="290" y="63" text-anchor="middle" font-size="18">🎀</text>
+    <circle cx="350" cy="56" r="22" fill="#d9f2d9"/><text x="350" y="63" text-anchor="middle" font-size="18">🎀</text>
+    <text x="400" y="61" class="sm">색 변형 ×3</text>
+    <circle cx="230" cy="126" r="22" fill="#fff2cc"/><text x="230" y="133" text-anchor="middle" font-size="16">🎀✨</text>
+    <circle cx="290" cy="126" r="22" fill="#ffe0cc"/><text x="290" y="133" text-anchor="middle" font-size="16">🎀🍂</text>
+    <text x="360" y="131" class="sm">시즌 리스킨 ×N</text>
+  </g>
+  <text x="520" y="94" font-size="24" fill="#9aa2b1">→</text>
+  <rect x="556" y="56" width="126" height="70" rx="12" fill="#e5f6ec" stroke="#bfe3cd"/>
+  <text x="619" y="88" text-anchor="middle" class="lb" fill="#12a150">컬렉션 슬롯</text><text x="619" y="108" text-anchor="middle" font-size="16" font-weight="800" fill="#12a150">5~6개</text>
+</svg>
+<figcaption><b>베이스 10~15개 × 변형 → 슬롯 30~50개.</b> 수집 부피는 크게, 아트 원가는 베이스 수준.</figcaption>
+</div>
+<table>
+  <tr><th>희귀도</th><th>획득 방식</th><th>비주얼</th></tr>
+  <tr><td>기본(Common)</td><td>초반 마일스톤·짧은 스트릭</td><td>단색, 진입 보상</td></tr>
+  <tr><td>레어(Rare)</td><td>장기 스트릭·누적 마일스톤</td><td>반짝임·테두리 강조</td></tr>
+  <tr><td>시즌한정(Seasonal)</td><td>시즌에만 획득, 이후 잠금</td><td>시즌 컬러·FOMO(재화 아님)</td></tr>
+</table>
+
+<h3>5.7 리듬/스트릭 정책 <span class="tag brand">기획3</span></h3>
+<table>
+  <tr><th>항목</th><th>정책(초기값)</th><th>근거</th></tr>
+  <tr><td>연속 기준</td><td>하루 1회 이상 '녹화 or 컴파일'이면 유지</td><td>진입 장벽 낮게</td></tr>
+  <tr><td>그레이스 데이</td><td>주 1회 자동 보정(놓쳐도 유지)</td><td>압박 최소화</td></tr>
+  <tr><td>끊김 처리</td><td>페널티·차감 없음, 다음 기록부터 재시작</td><td>재화 없음·죄책감 금지</td></tr>
+  <tr><td>요일 세트</td><td>7요일 각 스티커, 주간 리셋</td><td>주간 반복 리듬</td></tr>
+  <tr><td>소프트 캡</td><td>하루 획득 상한(예: 2개), 초과분 이월</td><td>과열·고갈 방지</td></tr>
+  <tr><td>시즌 리셋</td><td>시즌마다 신규 세트, 지난 시즌 잠금</td><td>지속 수집 동기</td></tr>
+</table>
+<div class="box brand"><b>카피 가이드(기획6):</b> 응원형만. ⭕"오늘 기록하면 6일 연속!" ⭕"이번 주 스티커 2개 남았어요" · ❌"연속 기록이 곧 끊깁니다" ❌"지금 안 하면 놓쳐요" 같은 압박·상실 프레이밍 금지.</div>
+
+<h3>5.8 아트 스펙 <span class="tag brand">기획7</span></h3>
+<p><b>제작 물량:</b> 베이스 디자인 <b>10~15개</b> → 색·시즌 변형으로 컬렉션 슬롯 <b>30~50개</b> 구성.</p>
+<table>
+  <tr><th>단계</th><th class="n">베이스 디자인</th><th class="n">컬렉션 슬롯</th></tr>
+  <tr><td>스모크</td><td class="n">6~8개</td><td class="n">12~15</td></tr>
+  <tr><td>MVP</td><td class="n">10~15개</td><td class="n">~30</td></tr>
+  <tr><td>확장(+시즌 세트)</td><td class="n">+@</td><td class="n">50까지</td></tr>
+</table>
+<div class="figrow">
+  <figure class="fig">
+  <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="30" y="30" width="200" height="200" rx="18" fill="#fafbfd" stroke="#e5e7ef"/>
+    <rect x="54" y="54" width="152" height="152" rx="10" fill="none" stroke="#ff9ec4" stroke-dasharray="5 4"/>
+    <circle cx="130" cy="130" r="58" fill="#ffe6ef" stroke="#f6cddd"/><text x="130" y="146" text-anchor="middle" font-size="52">🎀</text>
+    <text x="130" y="24" text-anchor="middle" class="sm">캔버스 512×512 (여백 포함)</text>
+    <text x="130" y="250" text-anchor="middle" class="sm">세이프에어리어 점선 안 · 투명 PNG</text>
+  </svg>
+  <figcaption>단일 스티커 규격.</figcaption>
+  </figure>
+  <figure class="fig">
+  <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" class="st">
+    <rect x="70" y="30" width="120" height="150" rx="10" fill="#fff" stroke="#eceef3"/>
+    <rect x="86" y="46" width="88" height="92" rx="8" fill="#e7e8ec"/>
+    <text x="130" y="160" text-anchor="middle" font-size="11" font-weight="700">joy</text>
+    <circle cx="86" cy="46" r="14" fill="#ffd84d"/><text x="86" y="51" text-anchor="middle" font-size="12">🌞</text>
+    <circle cx="176" cy="150" r="13" fill="#ff9ec4"/><text x="176" y="155" text-anchor="middle" font-size="11">🎀</text>
+    <text x="130" y="210" text-anchor="middle" class="sm">프레임 적용: 코너·여백 앵커</text>
+    <text x="130" y="228" text-anchor="middle" class="sm">영상 위 겹침 시 코너 우선</text>
+  </svg>
+  <figcaption>프레임 적용 규격.</figcaption>
+  </figure>
+</div>
+<ul>
+  <li><b>파일:</b> 투명 PNG(512×512) + 벡터 원본(SVG) 병행. 색 변형은 원본 컬러 스왑으로 생산.</li>
+  <li><b>배치 앵커:</b> 카드 4코너 + 이름 라벨 주변. 영상 중앙 가림 최소화(공유물 가독성, G2 QA 연계).</li>
+  <li><b>스케일:</b> 50~150% 리사이즈 허용, 회전 옵션(선택).</li>
+</ul>
+
+<h3>5.9 화면 수용 기준 <span class="tag brand">기획8</span> &amp; 오픈 이슈</h3>
+<table>
+  <tr><th>화면/요소</th><th>수용 기준</th><th>연계 KPI</th></tr>
+  <tr><td>획득 모달 → 적용</td><td>[꾸미러 가기] 탭률로 적용률 ≥60% 견인</td><td>스티커 적용률</td></tr>
+  <tr><td>stickers 탭</td><td>🔒 실루엣이 컬렉션 진입 유도</td><td>collection_viewed</td></tr>
+  <tr><td>컬렉션 화면</td><td>미획득 조건·진행도로 재행동 유발</td><td>재녹화율(48h)</td></tr>
+  <tr><td>스트릭 인디케이터</td><td>스트릭 이탈률 대조군 이하 유지</td><td>스트릭 이탈률</td></tr>
+</table>
+<p><b>오픈 이슈:</b> ① 현행 stickers 탭이 실동작인지 목업인지(개발4 공수 좌우) · ② 스티커 회전/레이어 지원 범위(스코프 최소화 권장) · ③ 시즌 세트 교체 주기(고려3 연동) · ④ 공유물에 스티커 굽는 방식(워터마크형 vs 편집 레이어, 고려2 QA 최우선).</p>
+<p class="lead">기획9(이벤트 패스·구독 상품 기획, 후행)는 §9 수익화에서 다룸.</p>
+
+<!-- 6 dev -->
+<h2><span class="num">6</span>개발 작업</h2>
+<p class="lead">항목 번호는 '개발1~10'로 표기(날짜 아님). 로드맵 단계별로 묶었다.</p>
+<h4>MVP 빌드 (~1주)</h4>
+<table>
+  <tr><th>#</th><th>항목</th><th>비고</th></tr>
+  <tr><td>개발1</td><td>언락 트리거 로직 — 행동 카운트·마일스톤 판정(재화 없음)</td><td>서버/클라 규칙</td></tr>
+  <tr><td>개발2</td><td>스티커 인벤토리 — 획득/보유 상태 저장·동기화</td><td>계정 귀속</td></tr>
+  <tr><td>개발3</td><td>언락 판정 엔진 — 임계값·스트릭·그레이스 데이 계산</td><td>기획1·기획3 반영</td></tr>
+  <tr><td>개발4</td><td>꾸미기 적용 UI — background/stickers 탭 실동작(배치·저장)</td><td>현 화면 구현 상태 확인 필요</td></tr>
+  <tr><td>개발6</td><td>획득 알림·연출 컴포넌트 + 컬렉션 화면</td><td>기획5·기획6</td></tr>
+  <tr><td>개발7</td><td>A/B 실험 인프라 — 피처 플래그, 홀드아웃, 스티키 버케팅</td><td>실험 필수</td></tr>
+  <tr><td>개발8</td><td>이벤트 로깅 파이프라인 — §7 로그 전송·수집</td><td>분석 필수</td></tr>
+  <tr><td>개발9</td><td>원격 설정(Remote Config) — 언락 임계값 조정</td><td>반복 속도 핵심</td></tr>
+</table>
+<h4>확장 (검증 후)</h4>
+<table>
+  <tr><th>#</th><th>항목</th><th>비고</th></tr>
+  <tr><td>개발5</td><td>프레임 스티커 합성 렌더 — 영상 카드 오버레이·공유물 반영</td><td>QA 리스크 큼(고려2)</td></tr>
+</table>
+<h4>후행 (수익화)</h4>
+<table>
+  <tr><th>#</th><th>항목</th><th>비고</th></tr>
+  <tr><td>개발10</td><td>결제(IAP)·구독 연동·영수증 검증</td><td>스토어 심사 리드타임</td></tr>
+</table>
+
+<!-- 7 logs -->
+<h2><span class="num">7</span>트래킹 로그 <span class="tag good">로그 설계</span></h2>
+<p class="lead">모든 이벤트에 공통으로 붙는 정보: <code>user_id</code>(누가) · <code>timestamp</code>(언제) · <code>experiment_id</code>(어느 실험) · <code>arm</code>(노출군/대조군) · <code>app_version</code>(앱 버전).</p>
+<table class="logtbl">
+  <tr><th>그룹</th><th>이벤트</th><th>주요 파라미터 : 타입</th><th>설명</th></tr>
+  <tr><td rowspan="4">핵심 행동</td><td><code>clip_recorded</code></td><td>clip_id:string · clip_len:int(초)</td><td>클립 1개 녹화 완료</td></tr>
+  <tr><td><code>edit_action</code></td><td>action_type:enum(stack/merge/trim) · target_clip_id:string</td><td>편집 동작 발생</td></tr>
+  <tr><td><code>vlog_compiled</code></td><td>vlog_id:string · clip_count:int · duration:int(초)</td><td><b>브이로그 완성</b> — 핵심 가치 순간</td></tr>
+  <tr><td><code>vlog_shared</code></td><td>vlog_id:string · audience:enum(private/close/public)</td><td>브이로그 공유</td></tr>
+  <tr><td rowspan="6">스티커</td><td><code>sticker_earned</code></td><td>sticker_id:string · set_id:string · rarity:enum(common/rare/seasonal) · trigger_type:enum(milestone/streak/season/share) · trigger_detail:string</td><td>스티커 획득 순간</td></tr>
+  <tr><td><code>sticker_applied / _removed</code></td><td>sticker_id:string · target:enum(profile/frame) · pos_x:float · pos_y:float · scale:float</td><td>프레임에 붙임/뗌</td></tr>
+  <tr><td><code>decorate_screen_opened</code></td><td>entry_point:enum(modal/tab/collection)</td><td>꾸미기 화면 진입</td></tr>
+  <tr><td><code>collection_viewed</code></td><td>completion_rate:float · set_id:string</td><td>컬렉션 화면 조회</td></tr>
+  <tr><td><code>set_completed</code></td><td>set_id:string</td><td>한 세트 전부 모음</td></tr>
+  <tr><td><code>earn_notif_shown / _tapped</code></td><td>sticker_id:string · action:enum(shown/tapped/dismissed)</td><td>획득 알림 노출/반응</td></tr>
+  <tr><td rowspan="3">리듬</td><td><code>streak_started</code></td><td>streak_type:enum(day/weekday/weekly)</td><td>스트릭 시작</td></tr>
+  <tr><td><code>streak_continued</code></td><td>streak_type:enum · streak_len:int</td><td>스트릭 이어감</td></tr>
+  <tr><td><code>streak_broken</code></td><td>streak_len:int · grace_used:bool</td><td>스트릭 끊김</td></tr>
+  <tr><td rowspan="2">실험/세션</td><td><code>experiment_enrolled</code></td><td>experiment_id:string · arm:enum(control/treatment)</td><td>실험 편입·그룹 배정</td></tr>
+  <tr><td><code>session_start / app_open</code></td><td>session_id:string · session_len:int(초, 종료 시)</td><td>앱 실행·세션</td></tr>
+  <tr><td rowspan="2">수익화</td><td><code>pass_viewed / purchased</code></td><td>pass_id:string · track:enum(free/premium) · price:decimal</td><td>이벤트 패스 노출/구매</td></tr>
+  <tr><td><code>subscription_*</code></td><td>plan_id:string · state:enum(viewed/started/renewed/cancelled) · price:decimal</td><td>구독 상태 변화</td></tr>
+</table>
+<p class="lead"><b>파생 지표</b>(위 로그로 계산): 리텐션 D1/D7/D30 · WCU%(주간 완성 유저 비율) · 재녹화율(48h) · 스티커 적용률 · 공유율(공유÷완성) · ARPDAU.</p>
+
+<!-- 8 dependencies -->
+<h2><span class="num">8</span>추가 고려사항 (의존성·운영)</h2>
+<table>
+  <tr><th>#</th><th>항목</th><th>필요성</th></tr>
+  <tr><td>고려1</td><td><b>표본 배정 비율 점검(SRM)</b></td><td>배정이 틀어지면 A/B 결과 자체가 무효라 반드시 점검</td></tr>
+  <tr><td>고려2</td><td>QA·회귀 테스트</td><td>스티커 합성이 공유 영상물 훼손 시 핵심 가치 손상 — 최우선</td></tr>
+  <tr><td>고려3</td><td>아트 에셋 파이프라인·일정</td><td>베이스+변형 생산 리드타임, 시즌 콘텐츠 지속 공급</td></tr>
+  <tr><td>고려4</td><td>프라이버시 검토</td><td>클라우드 구독(데이터 보관)과 Viva 프라이버시 정체성 정합성</td></tr>
+  <tr><td>고려5</td><td>스토어·결제(IAP) 셋업 리드타임</td><td>결제 심사·설정 선행 착수</td></tr>
+  <tr><td>고려6</td><td>롤백·킬스위치</td><td>기능 스위치를 꺼서 즉시 되돌리는 경로</td></tr>
+  <tr><td>고려7</td><td>실시간 KPI 대시보드</td><td>단계마다 반응 모니터링</td></tr>
+  <tr><td>고려8</td><td>스케일 계획(시즌 캘린더)</td><td>검증 후 콘텐츠 소진 대응</td></tr>
+</table>
+
+<!-- 9 monetization -->
+<h2><span class="num">9</span>수익화 — 두 엔진 분리</h2>
+<ul>
+  <li><b>데코 엔진:</b> 시즌 이벤트 패스(Pikmin Premium Pass 모델). 무료 트랙 유지로 습관 보존.</li>
+  <li><b>클라우드 구독 $1.99:</b> 목적·구매동기·해지포인트가 데코와 상이 → 별도 랜딩·별도 KPI(백업 사용률·M1 유지율)로 독립 A/B. 초기 번들 금지.</li>
+</ul>
+
+<!-- 10 risks -->
+<h2><span class="num">10</span>리스크 &amp; 대응</h2>
+<table>
+  <tr><th>리스크</th><th>대응</th></tr>
+  <tr><td>스트릭 압박이 브랜드 톤 훼손</td><td>부드러운 스트릭·그레이스 데이 + 가드레일 감시</td></tr>
+  <tr><td>저빈도 행동 → 수집 느림</td><td>편집·컴파일 포인트로 획득 밀도 보완</td></tr>
+  <tr><td>스티커 합성이 공유물 훼손</td><td>고려2 QA 최우선, 킬스위치</td></tr>
+  <tr><td>에셋 생산 비용</td><td>베이스×변형 파이프라인, 스모크 선행</td></tr>
+  <tr><td>데코·구독 번들 혼동</td><td>랜딩·KPI 완전 분리</td></tr>
+</table>
+
+<!-- 11 next -->
+<h2><span class="num">11</span>착수 액션</h2>
+<ol>
+  <li>인프라 먼저: §7 로그 + §6 개발7·8·9(로그·A/B·원격설정) 심기, 기준선 측정.</li>
+  <li>스모크 세트 확정: 베이스 6~8개(변형 포함 12~15슬롯) + 기획1 언락 규칙표.</li>
+  <li>A/B 실험 설계서 1p: 주지표=재녹화율(48h), 대조/노출, 성공 임계, 예상 판정일(~4일).</li>
+</ol>
+
+<!-- 12 glossary -->
+<h2><span class="num">12</span>용어 정리</h2>
+<table>
+  <tr><th>용어</th><th>뜻</th></tr>
+  <tr><td>북극성 지표(North Star)</td><td>제품의 핵심 가치를 대표하는 단 하나의 최상위 지표 — 모든 결정의 기준. 이 문서에선 WCU%(주간 완성 유저 비율)</td></tr>
+  <tr><td>도그푸딩(dogfooding)</td><td>출시 전 팀이 우리 제품을 직접 써보며 문제를 찾는 것</td></tr>
+  <tr><td>홀드아웃(holdout)</td><td>유저를 노출군/대조군으로 무작위로 나눠 비교하는 A/B 방식</td></tr>
+  <tr><td>스티키 버케팅</td><td>한 번 배정된 유저는 실험 내내 같은 그룹에 고정</td></tr>
+  <tr><td>피처 플래그(feature flag)</td><td>코드 배포 없이 기능을 켜고 끄는 스위치</td></tr>
+  <tr><td>원격 설정(Remote Config)</td><td>앱 업데이트 없이 서버에서 값(임계값 등) 조정</td></tr>
+  <tr><td>SRM</td><td>노출군/대조군이 의도한 비율로 안 나뉜 상태 — 있으면 A/B 결과 무효라 자동 점검</td></tr>
+  <tr><td>퍼널(funnel)</td><td>단계별로 유저가 어디서 이탈하는지 추적하는 흐름</td></tr>
+  <tr><td>근접지표 / 지연지표</td><td>행동 직후 바로 나오는 지표 / 시간이 지나야 보이는 지표(리텐션 등)</td></tr>
+  <tr><td>ARPDAU</td><td>일간 활성유저 1인당 평균 매출</td></tr>
+  <tr><td>중단 기준(kill criteria)</td><td>이 조건이면 실험·방향을 접는다는 사전 합의선</td></tr>
+  <tr><td>거짓 음성(false negative)</td><td>실제로는 효과가 있는데 "없다"고 잘못 판정하는 오류</td></tr>
+  <tr><td>코호트(cohort)</td><td>같은 시기에 유입/편입된 유저 묶음</td></tr>
+</table>
+
+<div class="foot">
+  Viva 스티커 꾸미기 수익화 계획서 · Hybrid 1+3 · 벤치마크 Pikmin Bloom · DAU 1,200<br>
+  표본 수 = 두 비율 비교식(z=2.8, 95%·80%), 판정 소요 = WAU 3,000 가정 — 실제 기준선/WAU 확정 후 재계산.
+</div>
+
+</div>
+<script>
+(function(){
+  var heads = Array.prototype.slice.call(document.querySelectorAll('h2'));
+  var toc = document.getElementById('toc');
+  if(!toc || !heads.length) return;
+  var html = '<h4>목차</h4>';
+  heads.forEach(function(h,i){
+    if(!h.id) h.id = 'sec-'+i;
+    var clone = h.cloneNode(true);
+    Array.prototype.forEach.call(clone.querySelectorAll('.tag'), function(t){ t.remove(); });
+    var numEl = clone.querySelector('.num');
+    var num = numEl ? numEl.textContent.trim() : '';
+    if(numEl) numEl.remove();
+    var title = clone.textContent.replace(/\s+/g,' ').trim();
+    var label = (num!=='' ? num + '. ' : '') + title;
+    html += '<a href="#'+h.id+'" data-i="'+i+'">'+label+'</a>';
+  });
+  toc.innerHTML = html;
+  var links = Array.prototype.slice.call(toc.querySelectorAll('a'));
+  function topOf(el){ return el.getBoundingClientRect().top + window.scrollY; }
+  function setActive(i){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-i')===String(i)); });
+  }
+  function onScroll(){
+    var y = window.scrollY + 130, idx = 0;
+    for(var j=0;j<heads.length;j++){ if(topOf(heads[j]) <= y) idx = j; else break; }
+    setActive(idx);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if(el) window.scrollTo({ top: topOf(el) - 18, behavior:'smooth' });
+    });
+  });
+  onScroll();
+})();
+</script>
+</body>
+</html>
